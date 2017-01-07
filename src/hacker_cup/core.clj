@@ -11,10 +11,6 @@
     {:dice (Integer/parseInt dice)
      :sides (Integer/parseInt sides)
      :addition (if addition (if minus? (- parsed-addition) parsed-addition) 0)}))
-(parse-dice "2d4-1")
-(parse-dice "2d4+1")
-(parse-dice "2d4")
-
 
 (defn distribution [{:keys [dice sides addition]} lifepoints]
   (let [vals (range 1 (inc sides))
@@ -26,7 +22,8 @@
         ;; sums (map #(apply + %) combinations)
         ;; mod-sums (map #(+ % addition) sums)
         ]
-    {:total (count combinations)
+    combinations
+    #_{:total (count combinations)
      :deadly (count deadly)}))
 ;; (time (distribution (parse-dice "4d4-10") 10))
 
