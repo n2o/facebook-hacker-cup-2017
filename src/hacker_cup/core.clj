@@ -22,8 +22,7 @@
         ;; sums (map #(apply + %) combinations)
         ;; mod-sums (map #(+ % addition) sums)
         ]
-    combinations
-    #_{:total (count combinations)
+    {:total (count combinations)
      :deadly (count deadly)}))
 ;; (time (distribution (parse-dice "4d4-10") 10))
 
