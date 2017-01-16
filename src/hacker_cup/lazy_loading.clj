@@ -6,7 +6,6 @@
   (loop [q (reverse (sort in))
          stack [(first q)]
          carried 0]
-    #_(println {:q q :stack stack :carried carried})
     (if (empty? q)
       carried
       (if (>= (* (first stack) (count stack)) 50)
@@ -23,8 +22,6 @@
 (count-loads [32 56 76 8 44 60 47 85 71 91])
 ;; => 8
 
-(count-loads '(52 22 16 41 81 84 16 61 13 81 87 51 54 68 51 10 19 90 10 63 26 46 97 57 78 53 42 98 28 33 71 18 72 33 63 7 37 18 58 4 35 69 28 70 64 74 35 56 5 9 40 86 40 23 37 6 63 76 78 4 97 88 38 13 1 12 14 71 11 20 96 84 3 75 14 84 49 27 6 60))
-
 (defn start []
   (loop [file (str/split (slurp "lazy_loading.txt") #"\n")
          pointer 1
@@ -34,13 +31,6 @@
     (let [input (map #(Integer/parseInt %) analyze)
           res (count-loads input)
           npointer (+ lines 1 pointer)]
-      (when (= 16 case)
-        (println {:pointer pointer
-                  :lines lines
-                  :input input
-                  :res res
-                  :npointer npointer
-                  }))
       (spit "output.txt" (str "Case #" case  ": "  res "\n") :append true)
       (when-not (>= npointer (count file))
         (let [nlines (Integer/parseInt (nth file npointer))]
